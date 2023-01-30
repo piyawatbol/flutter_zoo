@@ -61,43 +61,48 @@ class _AddReveiwScreenState extends State<AddReveiwScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 1,
-        backgroundColor: pink,
-        title: Custom_text(
-          color: Colors.white,
-          fontSize: 22,
-          fontWeight: null,
-          text: 'เพิ่มรีวิว',
+    return GestureDetector(
+      onTap: (){
+         FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 1,
+          backgroundColor: pink,
+          title: Custom_text(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: null,
+            text: 'เพิ่มรีวิว',
+          ),
         ),
-      ),
-      body: storeList.isEmpty
-          ? Center(
-              child: CircularProgressIndicator(
-              color: pink,
-            ))
-          : Container(
-              width: width,
-              height: height,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: height * 0.04),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.grey.shade400,
-                      radius: width * 0.24,
-                      backgroundImage: NetworkImage(
-                          "$ipcon/store_img/${storeList[0]['store_img']}"),
+        body: storeList.isEmpty
+            ? Center(
+                child: CircularProgressIndicator(
+                color: pink,
+              ))
+            : Container(
+                width: width,
+                height: height,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: height * 0.04),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.grey.shade400,
+                        radius: width * 0.24,
+                        backgroundImage: NetworkImage(
+                            "$ipcon/store_img/${storeList[0]['store_img']}"),
+                      ),
                     ),
-                  ),
-                  buildStar(),
-                  buildInputBox(),
-                  buildSaveButton()
-                ],
+                    buildStar(),
+                    buildInputBox(),
+                    buildSaveButton()
+                  ],
+                ),
               ),
-            ),
+      ),
     );
   }
 

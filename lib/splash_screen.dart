@@ -48,9 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
           backgroundImage: AssetImage('assets/image/logo.png'),
         ),
       ]),
-      nextScreen: user_id == null
-          ? LoginScreen()
-          : user_type == 'user'
+      nextScreen: user_id == null ? LoginScreen()  : user_type == 'user'
               ? TabScreen()
               : store_id == null
                   ? AddStoreScreen()

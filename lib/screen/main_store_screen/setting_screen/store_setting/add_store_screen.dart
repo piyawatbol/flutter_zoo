@@ -42,7 +42,6 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
     final uri = Uri.parse("$ipcon/api/store/add_store.php");
     var request = http.MultipartRequest('POST', uri);
     var img = await http.MultipartFile.fromPath("img", image!.path);
-
     request.files.add(img);
     request.fields['user_id'] = user_id.toString();
     request.fields['store_name'] = store_name.text;

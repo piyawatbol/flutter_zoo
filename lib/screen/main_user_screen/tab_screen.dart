@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zoo_app/screen/main_user_screen/home_screen/home_screen.dart';
+import 'package:zoo_app/screen/main_user_screen/noti_screen/noti_screen.dart';
 import 'package:zoo_app/screen/main_user_screen/profile_screen/profile_screen.dart';
 import 'package:zoo_app/screen/main_user_screen/star_screen/star_screen.dart';
 import 'package:zoo_app/widget/color.dart';
@@ -13,12 +14,7 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   int currentIndex = 0;
-  final screens = [
-    HomeScreen(),
-    StarScreen(),
-    Center(child: Text('แจ้งเตือน', style: TextStyle(fontSize: 50))),
-    ProfileScreen()
-  ];
+  final screens = [HomeScreen(), StarScreen(), NotiScreen(), ProfileScreen()];
 
   @override
   Widget build(BuildContext context) {

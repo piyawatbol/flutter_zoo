@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
   String? image;
   String? user_id;
+  
   get_zoo() async {
     final response = await http.get(Uri.parse("$ipcon/api/zoo/get_zoo.php"));
     var data = json.decode(response.body);
@@ -406,7 +407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontWeight: null,
                                 ),
                               ],
-                            ), 
+                            ),
                           )
                         ],
                       ),

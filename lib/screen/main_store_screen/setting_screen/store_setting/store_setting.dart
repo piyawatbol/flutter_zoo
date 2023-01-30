@@ -124,38 +124,43 @@ class _StoreSettingScreenState extends State<StoreSettingScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: pink,
-        elevation: 1,
-        title: Custom_text(
-          text: "ตั้งค่าร้านค้า",
-          fontSize: 20,
-          color: Colors.white,
-          fontWeight: null,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: pink,
+          elevation: 1,
+          title: Custom_text(
+            text: "ตั้งค่าร้านค้า",
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: null,
+          ),
         ),
-      ),
-      body: storeList.isEmpty
-          ? Center(child: CircularProgressIndicator())
-          : Container(
-              width: width,
-              height: height,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    buildImg(),
-                    buildBox("ชื่อร้าน", store_name),
-                    buildBox("เบอร์โทรศัพท์", store_phone),
-                    buildBox("Instragram", store_ig),
-                    buildBox("Line", store_line),
-                    buildBox("ตำบล", store_sub_district),
-                    buildBox("อำเภอ", store_district),
-                    buildBox("จังหวัด", store_province),
-                    buildSaveButton()
-                  ],
+        body: storeList.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : Container(
+                width: width,
+                height: height,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      buildImg(),
+                      buildBox("ชื่อร้าน", store_name),
+                      buildBox("เบอร์โทรศัพท์", store_phone),
+                      buildBox("Instragram", store_ig),
+                      buildBox("Line", store_line),
+                      buildBox("ตำบล", store_sub_district),
+                      buildBox("อำเภอ", store_district),
+                      buildBox("จังหวัด", store_province),
+                      buildSaveButton()
+                    ],
+                  ),
                 ),
               ),
-            ),
+      ),
     );
   }
 

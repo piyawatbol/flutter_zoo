@@ -87,44 +87,49 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: pink,
-        elevation: 1,
-        title: Custom_text(
-          text: "เพิ่มสัตว์เลี้ยง",
-          fontSize: 20,
-          color: Colors.white,
-          fontWeight: null,
+    return GestureDetector(
+      onTap: (){
+         FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: pink,
+          elevation: 1,
+          title: Custom_text(
+            text: "เพิ่มสัตว์เลี้ยง",
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: null,
+          ),
         ),
-      ),
-      body: Container(
-        width: width,
-        height: height,
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    buildImg(),
-                    buildBox("ชื่อสัตว์", zoo_name),
-                    buildBox("นำเข้า", zoo_import),
-                    buildBox("ราคา", zoo_price),
-                    buildBox("เพศ", zoo_sex),
-                    buildBox("จังหวัด", zoo_province),
-                    buildBox("ชนิด", zoo_type),
-                    buildBox("ฟาร์ม", zoo_farm),
-                    buildBox("ใบเลขที่นำเข้า", zoo_license),
-                    buildBox("วันเกิด", zoo_brithday),
-                    buildBox("รายละเอียด", zoo_detail),
-                    buildBox("อายุ", zoo_age),
-                    buildSaveButton()
-                  ],
-                ),
-                LoadingScreen(statusLoading: statusLoading)
-              ],
+        body: Container(
+          width: width,
+          height: height,
+          child: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      buildImg(),
+                      buildBox("ชื่อสัตว์", zoo_name),
+                      buildBox("นำเข้า", zoo_import),
+                      buildBox("ราคา", zoo_price),
+                      buildBox("เพศ", zoo_sex),
+                      buildBox("จังหวัด", zoo_province),
+                      buildBox("ชนิด", zoo_type),
+                      buildBox("ฟาร์ม", zoo_farm),
+                      buildBox("ใบเลขที่นำเข้า", zoo_license),
+                      buildBox("วันเกิด", zoo_brithday),
+                      buildBox("รายละเอียด", zoo_detail),
+                      buildBox("อายุ", zoo_age),
+                      buildSaveButton()
+                    ],
+                  ),
+                  LoadingScreen(statusLoading: statusLoading)
+                ],
+              ),
             ),
           ),
         ),

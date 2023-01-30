@@ -37,6 +37,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  delete_user() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    setState(() {
+      user_id = preferences.getString('user_id');
+    });
+    final response = await http
+        .get(Uri.parse("$ipcon/api/user/delete_user.php?user_id=$user_id"));
+    var data = json.decode(response.body);
+    print(data);
+    if (data == "Delete Success") {
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return LoginScreen();
+      }), (route) => false);
+    }
+  }
+
   @override
   void initState() {
     get_user();
@@ -58,6 +75,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           fontWeight: null,
           text: 'บัญชีผู้ใช้',
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                _showModalBottomSheet();
+              },
+              icon: Icon(Icons.delete_forever))
+        ],
       ),
       body: userList.isEmpty
           ? Center(child: CircularProgressIndicator(color: pink))
@@ -303,6 +327,77 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  void _showModalBottomSheet() {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    showModalBottomSheet(
+      context: context,
+      builder: (builder) {
+        return Container(
+          width: width,
+          height: height * 0.25,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Custom_text(
+                color: Colors.black,
+                fontSize: 22,
+                text: 'ต้องการลบบัญชีผู้ใช้หรือไม่?',
+                fontWeight: null,
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: width * 0.5,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.black87,
+                        backgroundColor: pink,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                      ),
+                      onPressed: () async {
+                        delete_user();
+                      },
+                      child: Custom_text(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: null,
+                        text: 'ตกลง',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: width * 0.5,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.black87,
+                        backgroundColor: Colors.grey.shade400,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                      ),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
+                      child: Custom_text(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: null,
+                        text: 'ยกเลิก',
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

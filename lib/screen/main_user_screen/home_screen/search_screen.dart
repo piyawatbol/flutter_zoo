@@ -34,27 +34,32 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        backgroundColor: pink,
-        centerTitle: true,
-        title: Custom_text(
-          color: Colors.white,
-          fontSize: 20,
-          text: 'ค้นหา',
-          fontWeight: FontWeight.w400,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 1,
+          backgroundColor: pink,
+          centerTitle: true,
+          title: Custom_text(
+            color: Colors.white,
+            fontSize: 20,
+            text: 'ค้นหา',
+            fontWeight: FontWeight.w400,
+          ),
         ),
-      ),
-      body: Container(
-        width: width,
-        height: height,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              buildSearch(),
-              zooList.isEmpty ? SizedBox() : buildAnimalRecommend()
-            ],
+        body: Container(
+          width: width,
+          height: height,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                buildSearch(),
+                zooList.isEmpty ? SizedBox() : buildAnimalRecommend()
+              ],
+            ),
           ),
         ),
       ),

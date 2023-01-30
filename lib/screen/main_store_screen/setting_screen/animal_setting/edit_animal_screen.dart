@@ -136,60 +136,65 @@ class _EditAnimalScreen extends State<EditAnimalScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: pink,
-        elevation: 1,
-        title: Custom_text(
-          text: "แก้ไขสัตว์เลี้ยง",
-          fontSize: 20,
-          color: Colors.white,
-          fontWeight: null,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: pink,
+          elevation: 1,
+          title: Custom_text(
+            text: "แก้ไขสัตว์เลี้ยง",
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: null,
+          ),
+          actions: [
+            Padding(
+                padding: const EdgeInsets.all(10),
+                child: IconButton(
+                  onPressed: () {
+                    _showModalBottomSheet();
+                  },
+                  icon: Icon(
+                    Icons.delete_forever,
+                    color: Colors.white,
+                  ),
+                ))
+          ],
         ),
-        actions: [
-          Padding(
-              padding: const EdgeInsets.all(10),
-              child: IconButton(
-                onPressed: () {
-                  _showModalBottomSheet();
-                },
-                icon: Icon(
-                  Icons.delete_forever,
-                  color: Colors.white,
-                ),
-              ))
-        ],
-      ),
-      body: zooList.isEmpty
-          ? Center(child: CircularProgressIndicator())
-          : Container(
-              width: width,
-              height: height,
-              child: SingleChildScrollView(
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        buildImg(),
-                        buildBox("ชื่อสัตว์", zoo_name),
-                        buildBox("นำเข้า", zoo_import),
-                        buildBox("ราคา", zoo_price),
-                        buildBox("เพศ", zoo_sex),
-                        buildBox("จังหวัด", zoo_province),
-                        buildBox("ชนิด", zoo_type),
-                        buildBox("ฟาร์ม", zoo_farm),
-                        buildBox("ใบเลขที่นำเข้า", zoo_license),
-                        buildBox("วันเกิด", zoo_brithday),
-                        buildBox("รายละเอียด", zoo_detail),
-                        buildBox("อายุ", zoo_age),
-                        buildSaveButton()
-                      ],
-                    ),
-                    LoadingScreen(statusLoading: statusLoading)
-                  ],
+        body: zooList.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : Container(
+                width: width,
+                height: height,
+                child: SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          buildImg(),
+                          buildBox("ชื่อสัตว์", zoo_name),
+                          buildBox("นำเข้า", zoo_import),
+                          buildBox("ราคา", zoo_price),
+                          buildBox("เพศ", zoo_sex),
+                          buildBox("จังหวัด", zoo_province),
+                          buildBox("ชนิด", zoo_type),
+                          buildBox("ฟาร์ม", zoo_farm),
+                          buildBox("ใบเลขที่นำเข้า", zoo_license),
+                          buildBox("วันเกิด", zoo_brithday),
+                          buildBox("รายละเอียด", zoo_detail),
+                          buildBox("อายุ", zoo_age),
+                          buildSaveButton()
+                        ],
+                      ),
+                      LoadingScreen(statusLoading: statusLoading)
+                    ],
+                  ),
                 ),
               ),
-            ),
+      ),
     );
   }
 

@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       "pass_word": pass_word.text,
     });
     var data = json.decode(response.body);
+    print(data);
     if (response.statusCode == 200) {
       setState(() {
         statusLoading = false;
